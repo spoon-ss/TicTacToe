@@ -1,18 +1,18 @@
 package com.models;
 
 public class Point {
-    private int x;
-    private int y;
+    private int i;
+    private int j;
 
-    public Point(int _x, int _y){
-        this.x = _x;
-        this.y = _y;
+    public Point(int _i, int _j){
+        this.i = _i;
+        this.j = _j;
     }
 
-    public int getX(){
-        return this.x;
+    public int getRow(){
+        return this.i;
     }
-    public int getY(){
-        return this.y;
+    public int getColumn(){
+        return this.j;
     }
 }

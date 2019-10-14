@@ -1,5 +1,4 @@
 package com.controlers;
-import com.views.Map;
 import com.models.*;
 public class Game {
     private Map map;
@@ -13,27 +12,24 @@ public class Game {
         this.judge = _judge;
         this.map = _map;
     }
-    public String run(){
-        while(!judge.hasResult()){
+    public Symbol run(){
+        while(judge.getResult(map) == Symbol.N){
             map.printMap();
             player1.makeMove();
-            if(judge.hasResult()){
+            if(judge.getResult(map) != Symbol.N){
                 break;
             }
             map.printMap();
             player2.makeMove();
-            if(judge.hasResult()){
+            if(judge.getResult(map) != Symbol.N){
                 break;
             }
         }
 
         map.printMap();
-        if(judge.getResult() == player1.getSymbol()){
-            return player1.toString() + " has win";
-        }else if(judge.getResult() == player2.getSymbol()){
-            return player2.toString() + " has win";
-        }
-        return "Tie!";
+
+        Symbol result = judge.getResult(map);
+        return result;
 
     }
 }

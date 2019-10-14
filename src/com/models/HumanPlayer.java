@@ -1,7 +1,5 @@
 package com.models;
 
-import com.views.Map;
-
 public class HumanPlayer implements Player{
     private String name;
     private Symbol symbol;

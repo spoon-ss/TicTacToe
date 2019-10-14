@@ -1,17 +1,16 @@
 package com.models;
-import com.views.Map;
-
-import java.util.Arrays;
 
 public class ArtificialPlayer implements Player {
     private String name;
     private Symbol symbol;
     private Map map;
+    private AISolver solver;
 
-    public ArtificialPlayer(String _name, Symbol _symbol, Map _map){
+    public ArtificialPlayer(String _name, Symbol _symbol, Map _map) {
         this.name = _name;
         this.symbol = _symbol;
         this.map = _map;
+        this.solver = new AISolver();
     }
     public void setName(String _name){
         this.name = _name;
@@ -30,6 +29,17 @@ public class ArtificialPlayer implements Player {
     }
 
     public void makeMove(){
+        Symbol opSymbol;
+        if(symbol == Symbol.O){
+            opSymbol = Symbol.X;
+        }else{
+            opSymbol = Symbol.O;
+        }
+        Point next = solver.getNextStep(map, symbol, opSymbol);
+        this.map.setPointWithSymbol(next, symbol);
+    }
+
+    /*public void makeMove(){
         Symbol[][] symbols = this.map.getCopy();
         Symbol opChoice = this.symbol == Symbol.X ? Symbol.O : Symbol.X;
         Symbol worstResult = opChoice;
@@ -165,5 +175,5 @@ public class ArtificialPlayer implements Player {
             }
         }
         return Symbol.T;
-    }
+    }*/
 }
